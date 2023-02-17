@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "765408638356",
+    "project_id": "campussathi",
+    "storage_bucket": "campussathi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765408638356:android:5e4b08d2009e635e18cb81",
+        "android_client_info": {
+          "package_name": "com.campussathi.campussathi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765408638356-romf6bkakke0fei07qtdbo9f2hvv4d3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeokIHx3PFqxx33_8EaEf7ICaceFuBRhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765408638356-romf6bkakke0fei07qtdbo9f2hvv4d3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
