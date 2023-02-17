@@ -11,20 +11,34 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const RegisterView(),
     ),
   );
 }
 
-//can be created with "stl"
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RegisterViewState extends State<RegisterView> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+//can be created with "stl"
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   //late final TextEditingController _username;
   late final TextEditingController _email;
   late final TextEditingController _password;
@@ -47,9 +61,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-     {
-      
-    }
+    {}
     return Scaffold(
       //scaffold is basic building of a widget
       appBar: AppBar(
@@ -61,51 +73,50 @@ class _HomePageState extends State<HomePage> {
           options: DefaultFirebaseOptions.currentPlatform,
         ),
         builder: (context, snapshot) {
-          switch (snapshot.connectionState){
+          switch (snapshot.connectionState) {
             case ConnectionState.done:
               return Column(
-            children: [
-              //create text fields using TextField(),
-              //TextField(
-              //controls: _username,),
-              TextField(
-                controller: _email,
-                enableSuggestions: false,
-                autocorrect: false,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  hintText: 'Enter your email address',
-                ),
-              ),
-              TextField(
-                controller: _password,
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-                decoration: const InputDecoration(
-                  hintText: 'Enter your password here',
-                ),
-              ),
-              TextButton(
-                onPressed: () async {
-                  //using the test editng as a proxy to access the testfield/on pressed it should connedt to fire base so wait for some time ..async
-                  final email = _email.text;
-                  final password = _password.text;
+                children: [
+                  //create text fields using TextField(),
+                  //TextField(
+                  //controls: _username,),
+                  TextField(
+                    controller: _email,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email address',
+                    ),
+                  ),
+                  TextField(
+                    controller: _password,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your password here',
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+                      //using the test editng as a proxy to access the testfield/on pressed it should connedt to fire base so wait for some time ..async
+                      final email = _email.text;
+                      final password = _password.text;
 
-                  //creating a user with the email and password
-                  final userCredential = FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: email, password: password);
-                  print(userCredential);
-                },
-                child: const Text('Register'),
-              ),
-            ],
-          );
-          default:
-          return const Text('Loading...');
+                      //creating a user with the email and password
+                      final userCredential = FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: email, password: password);
+                      print(userCredential);
+                    },
+                    child: const Text('Register'),
+                  ),
+                ],
+              );
+            default:
+              return const Text('Loading...');
           }
-          
         },
       ),
     );
