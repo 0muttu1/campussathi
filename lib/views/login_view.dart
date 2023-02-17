@@ -21,7 +21,6 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
-    //_username = TextEditingController();
     super.initState();
   }
 
@@ -29,7 +28,6 @@ class _LoginViewState extends State<LoginView> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-    //_username.dispose();
     super.dispose();
   }
 
@@ -37,9 +35,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     {}
     return Scaffold(
-      //scaffold is basic building of a widget
       appBar: AppBar(
-        //bar on the top of the screen
         title: const Text('Login'), //title of the top of the screen
       ),
       body: FutureBuilder(
@@ -51,9 +47,6 @@ class _LoginViewState extends State<LoginView> {
             case ConnectionState.done:
               return Column(
                 children: [
-                  //create text fields using TextField(),
-                  //TextField(
-                  //controls: _username,),
                   TextField(
                     controller: _email,
                     enableSuggestions: false,
@@ -74,17 +67,20 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   TextButton(
                     onPressed: () async {
-                      //using the test editng as a proxy to access the testfield/on pressed it should connedt to fire base so wait for some time ..async
                       final email = _email.text;
                       final password = _password.text;
                       try {
-                        final userCredential = FirebaseAuth.instance
+                        final userCredential = await FirebaseAuth.instance
                             .signInWithEmailAndPassword(
                                 email: email, password: password);
                         print(userCredential);
-                      } catch (e) {
-                        print('something bad happened');
-                        print(e);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('User not found');
+                        } else {
+                          print(e.message);
+                          print(e.code);
+                        }
                       }
                     },
                     child: const Text('Login'),
