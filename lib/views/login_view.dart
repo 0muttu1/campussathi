@@ -1,31 +1,19 @@
-import 'package:campussathi/views/login_view.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+//can be created with "stf"
 import 'package:firebase_auth/firebase_auth.dart';
-import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoginView(),
-      //home: const RegisterView(),
-    ),
-  );
-}
+import '../firebase_options.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -52,7 +40,7 @@ class _RegisterViewState extends State<RegisterView> {
       //scaffold is basic building of a widget
       appBar: AppBar(
         //bar on the top of the screen
-        title: const Text('Register'), //title of the top of the screen
+        title: const Text('Login'), //title of the top of the screen
       ),
       body: FutureBuilder(
         future: Firebase.initializeApp(
@@ -89,14 +77,17 @@ class _RegisterViewState extends State<RegisterView> {
                       //using the test editng as a proxy to access the testfield/on pressed it should connedt to fire base so wait for some time ..async
                       final email = _email.text;
                       final password = _password.text;
-
-                      //creating a user with the email and password
-                      final userCredential = FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: email, password: password);
-                      print(userCredential);
+                      try {
+                        final userCredential = FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: email, password: password);
+                        print(userCredential);
+                      } catch (e) {
+                        print('something bad happened');
+                        print(e);
+                      }
                     },
-                    child: const Text('Register'),
+                    child: const Text('Login'),
                   ),
                 ],
               );
@@ -107,4 +98,10 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
+
+  //late final TextEditingController _username;
 }
+
+
+
+//widget flutter bindings before void binding
