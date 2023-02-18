@@ -54,7 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
             enableSuggestions: false,
             autocorrect: false,
             decoration: const InputDecoration(
-              hintText: 'Enter your password here',
+              hintText: 'Create password',
             ),
           ),
           TextButton(
