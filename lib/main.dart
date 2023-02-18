@@ -12,7 +12,7 @@ void main() {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(),
+      home: const RegisterView(),
       //home: const RegisterView(),
     ),
   );
@@ -91,10 +91,20 @@ class _RegisterViewState extends State<RegisterView> {
                       final password = _password.text;
 
                       //creating a user with the email and password
-                      final userCredential = FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: email, password: password);
-                      print(userCredential);
+                      try {
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        print(userCredential);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('Weak password');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('Email already in use');
+                        } else if(e.code == 'invalid-email'){
+                          print('Invalid email address');
+                        }
+                      }
                     },
                     child: const Text('Register'),
                   ),
