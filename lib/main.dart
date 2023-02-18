@@ -4,7 +4,6 @@ import 'package:campussathi/views/verify_email_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
 
 import 'firebase_options.dart';
 
@@ -20,6 +19,7 @@ void main() {
       routes: {
         '/login/': (context) => const LoginView(),
         '/register/': (context) => const RegisterView(),
+        '/campussathihomepage/': (context) => const Campussathi(),
       },
     ),
   );
@@ -79,8 +79,8 @@ class _CampussathiState extends State<Campussathi> {
                   final shouldLogout = await showLogoutDialog(context);
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
-                    Navigator.of(context).restorablePushNamedAndRemoveUntil(
-                        '/login/', (route) => false);
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/login/', (route) => false,);
                   }
                   break;
               }
@@ -89,7 +89,7 @@ class _CampussathiState extends State<Campussathi> {
               return const [
                 PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
-                  child: Text('Logout'),
+                  child: Text('Logout'),  
                 ),
               ];
             },
