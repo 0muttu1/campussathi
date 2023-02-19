@@ -55,7 +55,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '765408638356',
     projectId: 'campussathi',
     authDomain: 'campussathi.firebaseapp.com',
+    databaseURL: 'https://campussathi-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'campussathi.appspot.com',
+    measurementId: 'G-D43J59V59D',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:765408638356:android:5e4b08d2009e635e18cb81',
     messagingSenderId: '765408638356',
     projectId: 'campussathi',
+    databaseURL: 'https://campussathi-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'campussathi.appspot.com',
   );
 }
