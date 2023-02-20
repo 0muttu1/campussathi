@@ -1,6 +1,7 @@
 import 'package:campussathi/constants/routes.dart';
 import 'package:campussathi/services/auth/auth_service.dart';
 import 'package:campussathi/views/campussathi_view.dart';
+import 'package:campussathi/views/decorated_login_page.dart';
 import 'package:campussathi/views/login_view.dart';
 import 'package:campussathi/views/register_view.dart';
 import 'package:campussathi/views/verify_email_view.dart';
@@ -10,9 +11,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Campussathi',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          },
+        ),
       ),
       home: const HomePage(),
       routes: {
@@ -20,6 +25,7 @@ void main() {
         registerRoute: (context) => const RegisterView(),
         campussathiRoute: (context) => const Campussathi(),
         verifyemailroute: (context) => const VerifyEmailView(),
+        loginRouteDecorated: (context) => const LoginPage(),
       },
     ),
   );
@@ -45,7 +51,7 @@ class HomePage extends StatelessWidget {
                 return const VerifyEmailView();
               }
             } else {
-              return const LoginView();
+              return const LoginPage();
             }
           default:
             return const CircularProgressIndicator();

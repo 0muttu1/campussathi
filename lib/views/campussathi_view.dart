@@ -1,4 +1,5 @@
 import 'package:campussathi/services/auth/auth_service.dart';
+import 'package:campussathi/views/decorated_login_page.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/routes.dart';
@@ -25,9 +26,24 @@ class _CampussathiState extends State<Campussathi> {
                   final shouldLogout = await showLogoutDialog(context);
                   if (shouldLogout) {
                     await AuthService.firebase().logOut();
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      loginRoute,
-                      (route) => false,
+                    // Navigator.of(context).pushNamedAndRemoveUntil(
+                    //   loginRoute,
+                    //   (route) => false,
+                    // );
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const LoginPage();
+                        }, //let this be there for the time being;
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   }
                   break;
