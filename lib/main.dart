@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             final user = AuthService.firebase().currentUser;
+
             if (user != null) {
               if (user.isEmailVerified) {
                 return const Campussathi();

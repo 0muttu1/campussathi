@@ -3,6 +3,7 @@ import 'package:campussathi/services/auth/auth_exceptions.dart';
 import 'package:campussathi/services/auth/auth_service.dart';
 import 'package:campussathi/utilities/show_error_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -34,7 +35,12 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(title: Text('Register',
+      style : GoogleFonts.pacifico(),
+      ),
+      centerTitle: true,
+      backgroundColor: Colors.grey[800],),
       body: Column(
         children: [
           //create text fields using TextField(),
