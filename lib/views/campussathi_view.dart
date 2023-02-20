@@ -44,7 +44,8 @@ class _CampussathiState extends State<Campussathi> {
           )
         ],
       ),
-      body: const Text('Welcome to campussathi'),
+      body: const Text(
+          'Welcome to campussathi.. Thats it for now further updates will have more added features'),
     );
   }
 }
