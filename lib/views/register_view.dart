@@ -135,7 +135,7 @@ class _RegisterViewState extends State<RegisterView> {
                     context,
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) {
-                        return VerifyEmailView();
+                        return const VerifyEmailView();
                       }, //let this be there for the time being;
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
