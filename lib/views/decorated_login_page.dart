@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
             const Icon(
               Icons.person,
               size: 60,
-              color: Color.fromARGB(255, 78, 53, 176),
+              color: Color.fromRGBO(67, 40, 173, 1),
             ),
             const SizedBox(height: 16),
             Padding(
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 22),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TextField(

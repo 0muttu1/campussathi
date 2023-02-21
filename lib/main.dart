@@ -7,6 +7,8 @@ import 'package:campussathi/views/register_view.dart';
 import 'package:campussathi/views/verify_email_view.dart';
 import 'package:flutter/material.dart';
 
+import 'mycustoms/custom_loading_indicator.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
@@ -38,7 +40,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     {}
     return FutureBuilder(
-      future: AuthService.firebase().initialize(),
+      future: Future.delayed(const Duration(milliseconds: 753),
+          () => AuthService.firebase().initialize()),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
@@ -54,7 +57,7 @@ class HomePage extends StatelessWidget {
               return const LoginPage();
             }
           default:
-            return const CircularProgressIndicator();
+            return const CustomLoadingIndicator();
         }
       },
     );

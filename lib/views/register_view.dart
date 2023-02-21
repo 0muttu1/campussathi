@@ -1,4 +1,3 @@
-import 'package:campussathi/constants/routes.dart';
 import 'package:campussathi/services/auth/auth_exceptions.dart';
 import 'package:campussathi/services/auth/auth_service.dart';
 import 'package:campussathi/utilities/show_error_dialog.dart';

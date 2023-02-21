@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../enums/menu_action.dart';
+import '../mycustoms/custom_message_buttons.dart';
 import '../mycustoms/custom_pop_menu_item.dart';
 import '../services/auth/auth_service.dart';
 import 'decorated_login_page.dart';
@@ -19,7 +20,7 @@ class _CampussathiState extends State<Campussathi> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(5, 35, 107, 0.724),
+        backgroundColor: const Color.fromRGBO(5, 35, 107, 0.722),
         title: Text(
           'Campussathi',
           style: GoogleFonts.pacifico(),
@@ -83,23 +84,86 @@ class _CampussathiState extends State<Campussathi> {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blue, // foreground color
-              elevation: 5, // elevation
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16, vertical: 10), // padding
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)), // rounded corners
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MoreButtons(
+                  text: 'Classes',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Library',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Notes',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'MessMenu',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Cafe',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Hostel',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'MedicalUnit',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Fitnesscenter',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'GateAccess',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+                const SizedBox(height: 10),
+                MoreButtons(
+                  text: 'Events',
+                  onPressed: () {
+                    // Add your logic here
+                  },
+                ),
+              ],
             ),
-            child: const Text('Button 1'),
           ),
-        ],
+        ),
       ),
     );
   }
