@@ -81,8 +81,8 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
     await AuthService.firebase().sendEmailVerification();
   }
 
-  void startTimer() async{
-    timer = Timer.periodic(Duration(seconds: 2), (timer) async{
+  void startTimer() async {
+    timer = Timer.periodic(Duration(seconds: 2), (timer) async {
       await checkEmailVerified();
     });
   }

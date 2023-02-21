@@ -215,7 +215,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 );
               },
-              child: const Text('Sign in'),
+              child: const Text('Alreade a user? Login here'),
             )
           ],
         ),

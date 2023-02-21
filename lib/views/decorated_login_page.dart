@@ -3,7 +3,6 @@ import 'package:campussathi/views/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../constants/routes.dart';
 import '../services/auth/auth_exceptions.dart';
 import '../services/auth/auth_service.dart';
 import '../utilities/show_error_dialog.dart';
@@ -240,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 );
               },
-              child: const Text('Sign up'),
+              child: const Text('Need an account? sign up'),
             )
           ],
         ),

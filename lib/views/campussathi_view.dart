@@ -1,12 +1,13 @@
-import 'package:campussathi/services/auth/auth_service.dart';
-import 'package:campussathi/views/decorated_login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../constants/routes.dart';
 import '../enums/menu_action.dart';
+import '../mycustoms/custom_pop_menu_item.dart';
+import '../services/auth/auth_service.dart';
+import 'decorated_login_page.dart';
 
 class Campussathi extends StatefulWidget {
-  const Campussathi({super.key});
+  const Campussathi({Key? key}) : super(key: key);
 
   @override
   State<Campussathi> createState() => _CampussathiState();
@@ -17,25 +18,31 @@ class _CampussathiState extends State<Campussathi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Campussathi'),
+        centerTitle: true,
+        backgroundColor: const Color.fromRGBO(5, 35, 107, 0.724),
+        title: Text(
+          'Campussathi',
+          style: GoogleFonts.pacifico(),
+        ),
         actions: [
           PopupMenuButton<MenuAction>(
+            icon: const Icon(
+              Icons.more_vert,
+              color: Color.fromARGB(184, 24, 1, 53),
+            ),
             onSelected: (value) async {
               switch (value) {
                 case MenuAction.logout:
                   final shouldLogout = await showLogoutDialog(context);
                   if (shouldLogout) {
                     await AuthService.firebase().logOut();
-                    // Navigator.of(context).pushNamedAndRemoveUntil(
-                    //   loginRoute,
-                    //   (route) => false,
-                    // );
+                    // ignore: use_build_context_synchronously
                     Navigator.push(
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation, secondaryAnimation) {
                           return const LoginPage();
-                        }, //let this be there for the time being;
+                        },
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                           return FadeTransition(
@@ -50,43 +57,105 @@ class _CampussathiState extends State<Campussathi> {
               }
             },
             itemBuilder: (context) {
-              return const [
-                PopupMenuItem<MenuAction>(
+              return [
+                const CustomPopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
-                  child: Text('Logout'),
+                  backgroundColor: Color.fromARGB(
+                      255, 78, 16, 12), // Set background color here
+                  borderRadius: 12, // Set border radius here
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 8.0,
+                      horizontal: 8.0,
+                    ),
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Color.fromRGBO(5, 35, 107, 1),
+                        fontSize: 16.0, // Set font size here
+                        fontWeight: FontWeight.bold, // Set font weight here
+                      ),
+                    ),
+                  ),
                 ),
               ];
             },
           )
         ],
       ),
-      body: const Text(
-          'Welcome to campussathi.. Thats it for now further updates will have more added features'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue, // foreground color
+              elevation: 5, // elevation
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16, vertical: 10), // padding
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)), // rounded corners
+            ),
+            child: const Text('Button 1'),
+          ),
+        ],
+      ),
     );
   }
 }
 
-Future<bool> showLogoutDialog(BuildContext context) {
+Future<bool> showLogoutDialog(BuildContext context) async {
+  // Show a custom animated dialog with a blurred background image
   return showDialog<bool>(
     context: context,
     builder: (context) {
-      return AlertDialog(
-        title: const Text('Sign out'),
-        content: const Text('Are you sure you want to sign out'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('Cancel'),
+      // Create a custom dialog with a nice design
+      return Dialog(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('Log out'),
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Show an icon in the header to illustrate the sign-out action
+              const Icon(Icons.logout, size: 40.0, color: Colors.red),
+              const SizedBox(height: 20.0),
+              const Text(
+                'Sign out',
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 20.0),
+              // Add a message to confirm the sign-out action
+              const Text('Are you sure you want to sign out?'),
+              const SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Customize the Cancel button with a nice color
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('Cancel',
+                        style: TextStyle(color: Colors.grey)),
+                  ),
+                  // Customize the Log out button with a nice color
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text('Log out',
+                        style: TextStyle(color: Colors.red)),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
+        ),
       );
     },
   ).then((value) => value ?? false);
