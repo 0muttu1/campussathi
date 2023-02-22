@@ -77,7 +77,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
 
   Future<void> checkEmailVerified() async {
     await user!.reload();
-    if (user!.emailVerified ?? false) {
+    if (user?.emailVerified ?? false) {
       timer.cancel();
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(

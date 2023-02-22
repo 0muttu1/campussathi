@@ -1,3 +1,4 @@
+import 'package:campussathi/views/notes_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -108,7 +109,21 @@ class _CampussathiState extends State<Campussathi> {
                 MoreButtons(
                   text: 'Notes',
                   onPressed: () {
-                    // Add your logic here
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const MyNotes();
+                        }, //let this be there for the time being;
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(height: 10),

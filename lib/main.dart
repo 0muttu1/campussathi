@@ -13,6 +13,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Campussathi',
       theme: ThemeData(
         pageTransitionsTheme: const PageTransitionsTheme(
@@ -57,7 +58,7 @@ class HomePage extends StatelessWidget {
               return const LoginPage();
             }
           default:
-            return const CustomLoadingIndicator();
+            return const CustomLoadingIndicator(message: "loading...");
         }
       },
     );
